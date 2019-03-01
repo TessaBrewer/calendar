@@ -1,13 +1,13 @@
-package Main;
 // "if this" ? "is true, do this" : "if not then do this"
 // how the "? :" stuff works^ 
-
+package Main;
+import java.util.Date;
 import java.util.Calendar;
 
-public class Main
+public class calendar
 {
-	public static final int lastMonth = 5;//January = 1
-	public static final int lastDay = 24;//first day = 1
+	public static final int lastMonth = 6;//january = 1
+	public static final int lastDay = 7;//first day = 1
 
 	public static int[][] daysOn() //first number (rows) = month, second number (cols) = day of month, 1 if you work, 0 if not
 	{
@@ -16,7 +16,7 @@ public class Main
 			{}, //January
 
 			{28, 
-			                1, 0, //February
+			                1, 0, //Febuary
 			 0, 1, 1, 1, 1, 1, 0,	
 			 0, 1, 1, 1, 1, 1, 0, 
 			 0, 1, 1, 1, 1, 1, 0,
@@ -71,7 +71,6 @@ public class Main
 		};
 		return arrayOfDays;
 	}
-	
 	public static int daysOnUntil(int currentDay, int currentMonth, int targetDay, int targetMonth) //calculates the number of work days between 2 days
 	{
 		int daysLeft = 0;
@@ -84,12 +83,14 @@ public class Main
 			}
 		}
 		return daysLeft;
+
 	}
-	
 	public static void main(String [] args)
 	{
 		Calendar cal = Calendar.getInstance();
-		int daysLeft = daysOnUntil(cal.get(Calendar.DAY_OF_MONTH), cal.MONTH - 1, lastDay, lastMonth - 1); //months in my array start at 0 (jan = 0), but days start at 1 ([0] = length of the month (ik, its unnecessary))
+		int currentMonth = cal.get(Calendar.MONTH);
+		int currentDay = cal.get(Calendar.DAY_OF_MONTH);
+		int daysLeft = daysOnUntil(currentDay, currentMonth, lastDay, lastMonth - 1); //months in my array start at 0 (jan = 0), but days start at 1
 		System.out.print(daysLeft);
 	}
 }
